@@ -787,6 +787,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
             
             // Choose the "right" indicator depending on the progress
             if(progress >= 0) {
+                strongSelf.hudView.alpha = 1;
                 // Cancel the indefiniteAnimatedView, then show the ringLayer
                 [strongSelf cancelIndefiniteAnimatedViewAnimation];
                 
@@ -820,6 +821,13 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
                 
                 // Update the activity count
                 strongSelf.activityCount++;
+                // 无进度的旋转条,延后展示
+                if (strongSelf.progressDelayedDisplayTimeInterval > 0) {
+                        strongSelf.hudView.alpha = 0;
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(strongSelf.progressDelayedDisplayTimeInterval * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            strongSelf.hudView.alpha = 1;
+                        });
+                }
             }
             
             // Fade in delayed if a grace time is set
@@ -845,6 +853,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         __strong SVProgressHUD *strongSelf = weakSelf;
         if(strongSelf){
+            strongSelf.hudView.alpha = 1;
             // Stop timer
             strongSelf.fadeOutTimer = nil;
             strongSelf.graceTimer = nil;
