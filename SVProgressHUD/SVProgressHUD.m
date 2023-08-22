@@ -191,6 +191,10 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     [self sharedView].maximumDismissTimeInterval = interval;
 }
 
++ (void)setProgressDelayedDisplayTimeInterval:(NSTimeInterval)interval {
+    [self sharedView].progressDelayedDisplayTimeInterval = interval;
+}
+
 + (void)setFadeInAnimationDuration:(NSTimeInterval)duration {
     [self sharedView].fadeInAnimationDuration = duration;
 }

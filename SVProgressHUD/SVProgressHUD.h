@@ -104,6 +104,7 @@ typedef void (^SVProgressHUDDismissCompletion)(void);
 + (void)setGraceTimeInterval:(NSTimeInterval)interval;                  // default is 0 seconds
 + (void)setMinimumDismissTimeInterval:(NSTimeInterval)interval;         // default is 5.0 seconds
 + (void)setMaximumDismissTimeInterval:(NSTimeInterval)interval;         // default is infinite
++ (void)setProgressDelayedDisplayTimeInterval:(NSTimeInterval)interval; // default is 0 seconds
 + (void)setFadeInAnimationDuration:(NSTimeInterval)duration;            // default is 0.15 seconds
 + (void)setFadeOutAnimationDuration:(NSTimeInterval)duration;           // default is 0.15 seconds
 + (void)setMaxSupportedWindowLevel:(UIWindowLevel)windowLevel;          // default is UIWindowLevelNormal
